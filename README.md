@@ -1,4 +1,4 @@
-# clapbackplusplus
+# Clapback++
 
 ## Project setup
 ```
