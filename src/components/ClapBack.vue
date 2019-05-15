@@ -39,8 +39,8 @@
               <h3 class="md-layout">Emoji options</h3>
               <div class="md-layout">
                 <md-switch v-model="form.options.randomEmoji">Randomize</md-switch>
-                <md-switch v-model="form.options.keepSlackmoji">Keep slackmoji</md-switch>
                 <md-switch v-model="form.options.punctuate">Punctuate</md-switch>
+                <md-switch class="md-hide" v-model="form.options.keepSlackmoji">Keep slackmoji</md-switch>
               </div>
             </div>
           </div>
@@ -56,6 +56,24 @@
 </template>
 
 <script>
+  /** Titles
+   * yasss
+   * slay
+   * preach
+   * 🔥🔥🔥
+   * 💁‍♀️
+   * get it
+   * 🤣🤣🤣
+   */
+
+  /** Emoji groups
+   * (junk food) :pizza::hamburger::fries::hotdog::pretzel::bacon::taco:
+   * (monkeys) :monkey_face::monkey::speak_no_evil::hear_no_evil::see_no_evil:
+   * (silly faces) :wink::yum::face_with_rolling_eyes::smirk::sleeping::upside_down_face::shushing_face::face_with_hand_over_mouth::face_with_monocle:
+   * (clap) 👏
+   * (Dollar sign) 💲
+   * (Money) 💲🤑💸💰
+   */
   export default {
     name: 'ClapBack',
     data: () => ({
@@ -80,5 +98,9 @@
   .breathe {
     margin-left: 1em;
     margin-right: 1em;
+  }
+  
+  .md-hide {
+    visibility: hidden;
   }
 </style>
