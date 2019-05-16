@@ -1,5 +1,10 @@
-class TextService {
-  
+function capitalize(text) {
+  return String(text).toUpperCase();
 }
 
-export default TextService;
+const service = {
+  capitalize
+};
+
+
+export default service;
