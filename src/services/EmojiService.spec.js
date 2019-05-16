@@ -50,3 +50,17 @@ describe('The standard clapback', () => {
   });
 // The intent is to provide players with a sense of pride and accomplishment for unlocking different heroes.
 });
+
+describe('punctuate', () => {
+  test('should replace punctuation', () => {
+    const values = {
+      text: 'this. is not. proper, grammar!????',
+      emojis: ['👏'],
+      randomize: false
+    };
+
+    const actual = EmojiService.punctuate(values);
+
+    expect(actual).toBe('this👏 is not👏 proper👏 grammar👏');
+  });
+});
