@@ -15,10 +15,10 @@
             </md-field>
             <div class="md-layout-item">
               <md-field>
-                <label for="txtFill">👏</label>
+                <label for="txtFill">Emoji fillers</label>
                 <md-input name="txtFill" id="txtFill" v-model="form.txtFill"></md-input>
               </md-field>
-              <md-field>
+              <md-field class="hide">
                 <md-select>
 
                 </md-select>
@@ -30,9 +30,11 @@
             <div class="md-layout-item">
               <h3 class="md-layout">Text options</h3>
               <div class="md-layout">
-                <md-switch v-model="form.options.allCaps">ALL CAPS</md-switch>
-                <md-switch v-model="form.options.randomCase">RanDoM CAsE</md-switch>
-                <md-switch v-model="form.options.titleCase">Title Case</md-switch>
+                <md-switch v-on:change="textOptChange('allCaps')" v-model="form.options.allCaps">ALL CAPS</md-switch>
+                <md-switch v-on:change="textOptChange('randomCase')" v-model="form.options.randomCase">RanDoM CAsE
+                </md-switch>
+                <md-switch v-on:change="textOptChange('titleCase')" v-model="form.options.titleCase">Title Case
+                </md-switch>
               </div>
             </div>
             <div class="md-layout-item">
@@ -40,15 +42,15 @@
               <div class="md-layout">
                 <md-switch v-model="form.options.randomEmoji">Randomize</md-switch>
                 <md-switch v-model="form.options.punctuate">Punctuate</md-switch>
-                <md-switch class="md-hide" v-model="form.options.keepSlackmoji">Keep slackmoji</md-switch>
+                <md-switch class="hide" v-model="form.options.keepSlackmoji">Keep slackmoji</md-switch>
               </div>
             </div>
           </div>
 
         </md-card-content>
         <md-card-actions>
-          <md-button>Copy to clipboard</md-button>
-          <md-button>Clap it out</md-button>
+          <md-button class="hide">Copy to clipboard</md-button>
+          <md-button v-on:click="submit">Clap it out</md-button>
         </md-card-actions>
       </md-card>
     </form>
@@ -56,6 +58,9 @@
 </template>
 
 <script>
+  import TextService from '../services/TextService'
+  import EmojiService from '../services/EmojiService'
+  import {toArray} from 'stringz'
   /** Titles
    * yasss
    * slay
@@ -78,8 +83,10 @@
     name: 'ClapBack',
     data: () => ({
       title: 'Need a sassy comeback? Get started here⬇',
+      sassyText: '',
       form: {
         txtMain: '',
+        txtFill: '👏',
         options: {
           allCaps: false,
           randomCase: false,
@@ -90,7 +97,34 @@
         }
       }
     }),
-    methods: {}
+    methods: {
+      textOptChange(t) {
+        if (t !== 'allCaps') this.form.options.allCaps = false;
+        if (t !== 'randomCase') this.form.options.randomCase = false;
+        if (t !== 'titleCase') this.form.options.titleCase = false;
+      },
+      submit() {
+        let txt;
+        const main = this.form.txtMain;
+        txt = main;
+        if (this.form.options.titleCase) txt = TextService.titleCase(main);
+        if (this.form.options.randomCase) txt = TextService.randomCase(main);
+        if (this.form.options.allCaps) txt = TextService.capitalize(main);
+
+        const emojiOpt = {
+          text: txt,
+          emojis: toArray(this.form.txtFill),
+          randomize: this.form.options.randomEmoji
+        };
+        if (this.form.options.punctuate) {
+          txt = EmojiService.punctuate(emojiOpt);
+        } else {
+          txt = EmojiService.clapback(emojiOpt);
+        }
+
+        this.sassyText = txt;
+      }
+    }
   }
 </script>
 
@@ -99,8 +133,8 @@
     margin-left: 1em;
     margin-right: 1em;
   }
-  
-  .md-hide {
+
+  .hide {
     visibility: hidden;
   }
 </style>
