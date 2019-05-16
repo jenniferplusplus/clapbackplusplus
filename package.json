@@ -12,10 +12,12 @@
   "dependencies": {
     "core-js": "^2.6.5",
     "rxjs": "^6.5.2",
+    "title-case": "^2.1.1",
     "vue": "^2.6.10",
     "vue-material": "^1.0.0-beta-11"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
     "@vue/cli-plugin-babel": "^3.7.0",
     "@vue/cli-plugin-eslint": "^3.7.0",
     "@vue/cli-plugin-unit-jest": "^3.7.0",

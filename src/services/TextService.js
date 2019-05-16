@@ -1,3 +1,5 @@
+import TitleCase from 'title-case'
+
 function capitalize(text) {
   return String(text).toUpperCase();
 }
@@ -14,9 +16,14 @@ function randomCase(text) {
   return result.join('');
 }
 
+function titleCase(text) {
+  return TitleCase(String(text));
+}
+
 const service = {
   capitalize,
-  randomCase
+  randomCase,
+  titleCase
 };
 
 
