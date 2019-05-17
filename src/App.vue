@@ -8,7 +8,7 @@
     <div class="md-layout footer">
       <md-content class="md-layout-item footer-item">
         <div class="md-layout md-alignment-bottom-left">
-          <p><a href="https://jenniferplusplus.com/a-job-i-did-not-get/">Learn more</a></p>
+          <p><a href="https://jenniferplusplus.com/a-job-i-did-not-get/">Read why</a></p>
         </div>
       </md-content>
       <md-content class="md-layout-item footer-item">
