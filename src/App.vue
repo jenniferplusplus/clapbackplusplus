@@ -1,7 +1,6 @@
 <template>
   <div id="app" class="md-layout">
     <div class="md-layout-item">
-      <img alt="Vue logo" src="./assets/logo.png">
       <ClapBack/>
     </div>
   </div>
