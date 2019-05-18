@@ -49,8 +49,16 @@
 
         </md-card-content>
         <md-card-actions>
-          <md-button class="hide">Copy to clipboard</md-button>
-          <md-button v-on:click="submit">Clap it out</md-button>
+          <a
+            v-bind:href="!sassyText ? '/' : 'https://twitter.com/intent/tweet?text=' + sassyText"
+            v-bind:onclick="!sassyText ? 'return false;' : 'return true;'"
+            data-size="large">
+          <md-button class="md-icon-button md-raised">
+              <i class="fab fa-twitter twitter-button"></i>
+          </md-button>
+          </a>
+          <md-button class="hide md-raised">Copy to clipboard</md-button>
+          <md-button class="md-raised md-primary" v-on:click="submit">Clap it out</md-button>
         </md-card-actions>
       </md-card>
     </form>
@@ -136,5 +144,9 @@
 
   .hide {
     visibility: hidden;
+  }
+
+  .twitter-button {
+    color: hsl(196.5, 100%, 46.5%);
   }
 </style>
