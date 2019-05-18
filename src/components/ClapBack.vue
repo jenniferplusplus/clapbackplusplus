@@ -50,6 +50,7 @@
         </md-card-content>
         <md-card-actions>
           <a
+            class="breathe"
             v-bind:href="!sassyText ? '/' : 'https://twitter.com/intent/tweet?text=' + sassyText"
             v-bind:onclick="!sassyText ? 'return false;' : 'return true;'"
             data-size="large">
@@ -57,7 +58,7 @@
               <i class="fab fa-twitter twitter-button"></i>
           </md-button>
           </a>
-          <md-button class="hide md-raised">Copy to clipboard</md-button>
+          <md-button v-clipboard:copy="sassyText" class="md-raised md-accent">Copy to clipboard</md-button>
           <md-button class="md-raised md-primary" v-on:click="submit">Clap it out</md-button>
         </md-card-actions>
       </md-card>
